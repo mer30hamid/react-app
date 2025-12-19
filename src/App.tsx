@@ -1,6 +1,7 @@
 import Button from './components/Button';
 import Card from './components/Card';
 import Badge from './components/Badge';
+import UserProfile from './components/UserProfile';
 
 function App() {
   const handleClick = () => {
@@ -9,13 +10,33 @@ function App() {
   return (
     <div style={{ maxWidth: '600px', margin: '0 auto' }}>
       <h1>Component Basics</h1>
-      
-      <div style={{ marginBottom: '1rem', display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+        <div style={{ marginBottom: '1rem', display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
         <Badge text="New" color="blue" />
         <Badge text="Success" color="green" />
         <Badge text="Error" color="red" />
         <Badge text="Warning" color="yellow" />
         <Badge text="Default" color="gray" />
+      </div>
+
+      <div style={{ marginBottom: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <UserProfile
+          name="Alice Johnson"
+          email="alice@example.com"
+          role="admin"
+          isOnline={true}
+        />
+        <UserProfile
+          name="Bob Smith"
+          email="bob@example.com"
+          role="user"
+          isOnline={false}
+        />
+        <UserProfile
+          name="Charlie Davis"
+          email="charlie@example.com"
+          role="guest"
+          isOnline={true}
+        />
       </div>
 
       <Card
