@@ -2,6 +2,7 @@ import Button from './components/Button';
 import Card from './components/Card';
 import Badge from './components/Badge';
 import UserProfile from './components/UserProfile';
+import Counter from './components/Counter.tsx';
 
 function App() {
   const handleClick = () => {
@@ -35,8 +36,11 @@ function App() {
           name="Charlie Davis"
           email="charlie@example.com"
           role="guest"
-          isOnline={true}
-        />
+          isOnline={true}        />
+      </div>
+
+      <div style={{ marginBottom: '1.5rem' }}>
+        <Counter/>
       </div>
 
       <Card
