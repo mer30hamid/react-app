@@ -1,12 +1,21 @@
-import FormBasics from './examples/FormBasics';
-import ValidatedForm from './examples/ValidatedForm';
+import EffectBasics from './examples/EffectBasics';
+import DocumentTitle from './examples/DocumentTitle';
+import Timer from './examples/Timer';
+import WindowEvents from './examples/WindowEvents';
+import LocalStorageExample from './examples/LocalStorageExample';
 
 function App() {
   return (
     <div>
-      <FormBasics />
+      <EffectBasics />
       <hr style={{ margin: '2rem' }} />
-      <ValidatedForm />
+      <DocumentTitle />
+      <hr style={{ margin: '2rem' }} />
+      <Timer />
+      <hr style={{ margin: '2rem' }} />
+      <WindowEvents />
+      <hr style={{ margin: '2rem' }} />
+      <LocalStorageExample />
     </div>
   );
 }
