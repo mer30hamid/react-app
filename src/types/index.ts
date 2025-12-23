@@ -1,0 +1,16 @@
+export type User = {
+  id: number;
+  name: string;
+  email: string;
+  avatar?: string;
+};
+
+export type Task = {
+  id: string;
+  title: string;
+  description: string;
+  status: 'todo' | 'in-progress' | 'done';
+  priority: 'low' | 'medium' | 'high';
+  createdAt: Date;
+  dueDate?: Date;
+};
