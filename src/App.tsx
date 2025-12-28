@@ -1,10 +1,10 @@
 import AppLayout from './layouts/AppLayout';
-import TaskList from './features/tasks/TaskList';
+import TasksFeature from "./features/task/TasksFeature.tsx";
 
 function App() {
   return (
     <AppLayout>
-      <TaskList />
+      <TasksFeature />
     </AppLayout>
   );
 }
