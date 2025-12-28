@@ -1,17 +1,22 @@
 import { useState, useEffect } from 'react';
 import { tasksApi } from '../../api/tasks';
+import styles from './TaskList.module.css';
 import type { Task } from '../../types';
 import TaskCard from './TaskCard';
-import StyledButton from '../../components/StyledButton';
-import styles from './TaskList.module.css';
 
 type FilterStatus = 'all' | Task['status'];
+type ViewMode = 'list' | 'card';
 
-function TaskList() {
-  const [tasks, setTasks] = useState<Task[]>([]);
+type TaskListProps = {
+  tasks: Task[];
+  setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
+};
+
+function TaskList({ tasks, setTasks }: TaskListProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [filter, setFilter] = useState<FilterStatus>('all');
+  const [viewMode, setViewMode] = useState<ViewMode>('card');
 
   useEffect(() => {
     loadTasks();
@@ -35,10 +40,9 @@ function TaskList() {
       await tasksApi.deleteTask(id);
       setTasks((prev) => prev.filter((task) => task.id !== id));
     } catch (err) {
-      alert('Failed to delete task');
+      alert(`Failed to delete task ${err}`);
     }
   };
-
   const handleStatusChange = async (id: string, status: Task['status']) => {
     try {
       await tasksApi.updateTask(id, { status });
@@ -46,7 +50,7 @@ function TaskList() {
         prev.map((task) => (task.id === id ? { ...task, status } : task))
       );
     } catch (err) {
-      alert('Failed to update task');
+      alert(`Failed to update task ${err}`);
     }
   };
 
@@ -60,12 +64,36 @@ function TaskList() {
   if (error) {
     return <div style={{ color: '#c00' }}>Error: {error}</div>;
   }
-
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <h2 className={styles.title}>My Tasks</h2>
-        <StyledButton onClick={() => alert('Add task')}>+ New Task</StyledButton>
+        <div className={styles.headerActions}>
+          <div className={styles.viewToggle}>
+            <label className={styles.radioLabel}>
+              <input
+                type="radio"
+                name="viewMode"
+                value="list"
+                checked={viewMode === 'list'}
+                onChange={(e) => setViewMode(e.target.value as ViewMode)}
+                className={styles.radioInput}
+              />
+              <span className={styles.radioText}>📋 List</span>
+            </label>
+            <label className={styles.radioLabel}>
+              <input
+                type="radio"
+                name="viewMode"
+                value="card"
+                checked={viewMode === 'card'}
+                onChange={(e) => setViewMode(e.target.value as ViewMode)}
+                className={styles.radioInput}
+              />
+              <span className={styles.radioText}>🎴 Card</span>
+            </label>
+          </div>
+        </div>
       </div>
 
       <div className={styles.filters}>
@@ -93,14 +121,11 @@ function TaskList() {
         >
           Done ({tasks.filter((t) => t.status === 'done').length})
         </button>
-      </div>
-
-      {filteredTasks.length === 0 ? (
+      </div>      {filteredTasks.length === 0 ? (
         <div className={styles.emptyState}>
           <h3>No tasks found</h3>
           <p>Create your first task to get started!</p>
-        </div>
-      ) : (
+        </div>      ) : viewMode === 'card' ? (
         <div className={styles.taskGrid}>
           {filteredTasks.map((task) => (
             <TaskCard
@@ -108,6 +133,20 @@ function TaskList() {
               task={task}
               onDelete={handleDelete}
               onStatusChange={handleStatusChange}
+              onEdit={(id) => alert(`Edit task ${id}`)}
+            />
+          ))}
+        </div>
+      ) : (
+        <div className={styles.taskList}>
+          {filteredTasks.map((task) => (
+            <TaskCard
+              key={task.id}
+              task={task}
+              onDelete={handleDelete}
+              onStatusChange={handleStatusChange}
+              onEdit={(id) => alert(`Edit task ${id}`)}
+              showActions={true}
             />
           ))}
         </div>
