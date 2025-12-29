@@ -92,13 +92,13 @@ jobs:
           git tag -a "${{ steps.version.outputs.tag }}" -m "Release ${{ steps.version.outputs.tag }}"
           git push origin "${{ steps.version.outputs.tag }}"
       
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
+      - name: Download build artifacts from workflow run
+        uses: dawidd6/action-download-artifact@v3
         with:
+          run_id: ${{ github.event.inputs.run_id }}
           name: build-output
           path: dist/
-          run-id: ${{ github.event.inputs.run_id }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Create GitHub Release
         uses: actions/create-release@v1
@@ -116,6 +116,7 @@ jobs:
             **Increment Type**: ${{ github.event.inputs.increment }}
             **Build Run ID**: ${{ github.event.inputs.run_id }}
             **Deployed**: ${{ github.event.repository.name }}
+            **Commit**: ${{ github.sha }}
           draft: false
           prerelease: false
       
