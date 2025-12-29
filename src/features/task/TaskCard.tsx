@@ -46,7 +46,9 @@ function TaskCard({
         <div className={styles.badges}>
           <span className={priorityClass}>{task.priority}</span>
           <span className={statusClass}>
-            {task.status === 'in-progress' ? 'In Progress' : task.status.toUpperCase()}
+            {task.status === 'in-progress'
+              ? 'In Progress'
+              : task.status.toUpperCase()}
           </span>
         </div>
       </div>
@@ -74,7 +76,9 @@ function TaskCard({
             <select
               className={styles.statusSelect}
               value={task.status}
-              onChange={(e) => onStatusChange(task.id, e.target.value as Task['status'])}
+              onChange={(e) =>
+                onStatusChange(task.id, e.target.value as Task['status'])
+              }
               aria-label="Change task status"
             >
               <option value="todo">To Do</option>

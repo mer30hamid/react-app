@@ -13,7 +13,7 @@ function LikeButton({ initialLikes = 0, onLike }: LikeButtonProps) {
     const newLikes = isLiked ? likes - 1 : likes + 1;
     setLikes(newLikes);
     setIsLiked(!isLiked);
-    
+
     // Notify parent component (if callback provided)
     onLike?.(newLikes);
   };

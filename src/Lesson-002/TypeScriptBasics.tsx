@@ -16,7 +16,7 @@ function TypeScriptBasics() {
 
   // Arrays
   const tags: string[] = ['react', 'typescript', 'vite'];
-  
+
   // Union types
   const status: 'idle' | 'loading' | 'success' | 'error' = 'success';
 
@@ -28,7 +28,7 @@ function TypeScriptBasics() {
         <p>Email: {user.email}</p>
         <p>Role: {user.isAdmin ? 'Admin' : 'User'}</p>
       </div>
-      
+
       <div>
         <p>Tags: {tags.join(', ')}</p>
         <p>Status: {status}</p>

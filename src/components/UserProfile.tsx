@@ -6,9 +6,23 @@ type UserProfileProps = {
   isOnline: boolean;
 };
 
-function UserProfile({ name, email, avatar, role, isOnline }: UserProfileProps) {
+function UserProfile({
+  name,
+  email,
+  avatar,
+  role,
+  isOnline,
+}: UserProfileProps) {
   return (
-    <div style={{ display: 'flex', gap: '1rem', padding: '1rem', border: '1px solid #ddd', borderRadius: '8px' }}>
+    <div
+      style={{
+        display: 'flex',
+        gap: '1rem',
+        padding: '1rem',
+        border: '1px solid #ddd',
+        borderRadius: '8px',
+      }}
+    >
       <div
         style={{
           width: '60px',
@@ -23,7 +37,15 @@ function UserProfile({ name, email, avatar, role, isOnline }: UserProfileProps) 
           fontWeight: 'bold',
         }}
       >
-        {avatar ? <img src={avatar} alt={name} style={{ width: '100%', borderRadius: '50%' }} /> : name[0]}
+        {avatar ? (
+          <img
+            src={avatar}
+            alt={name}
+            style={{ width: '100%', borderRadius: '50%' }}
+          />
+        ) : (
+          name[0]
+        )}
       </div>
       <div>
         <h3 style={{ margin: '0 0 0.25rem 0' }}>
@@ -41,9 +63,12 @@ function UserProfile({ name, email, avatar, role, isOnline }: UserProfileProps) 
             {role}
           </span>
         </h3>
-        <p style={{ margin: '0', color: '#666', fontSize: '0.9rem' }}>{email}</p>
+        <p style={{ margin: '0', color: '#666', fontSize: '0.9rem' }}>
+          {email}
+        </p>
         <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.85rem' }}>
-          <span style={{ color: isOnline ? '#51cf66' : '#aaa' }}>●</span> {isOnline ? 'Online' : 'Offline'}
+          <span style={{ color: isOnline ? '#51cf66' : '#aaa' }}>●</span>{' '}
+          {isOnline ? 'Online' : 'Offline'}
         </p>
       </div>
     </div>

@@ -10,11 +10,19 @@ type TaskFormProps = {
 
 function TaskForm({ onSubmit, onCancel, initialValues }: TaskFormProps) {
   const [title, setTitle] = useState(initialValues?.title || '');
-  const [description, setDescription] = useState(initialValues?.description || '');
-  const [status, setStatus] = useState<Task['status']>(initialValues?.status || 'todo');
-  const [priority, setPriority] = useState<Task['priority']>(initialValues?.priority || 'medium');
+  const [description, setDescription] = useState(
+    initialValues?.description || ''
+  );
+  const [status, setStatus] = useState<Task['status']>(
+    initialValues?.status || 'todo'
+  );
+  const [priority, setPriority] = useState<Task['priority']>(
+    initialValues?.priority || 'medium'
+  );
   const [dueDate, setDueDate] = useState(
-    initialValues?.dueDate ? initialValues.dueDate.toISOString().split('T')[0] : ''
+    initialValues?.dueDate
+      ? initialValues.dueDate.toISOString().split('T')[0]
+      : ''
   );
   const [errors, setErrors] = useState<{ title?: string }>({});
 
