@@ -18,9 +18,15 @@ function Counter() {
   };
 
   return (
-    <div style={{ padding: '2rem', border: '2px solid #0066cc', borderRadius: '8px' }}>
+    <div
+      style={{
+        padding: '2rem',
+        border: '2px solid #0066cc',
+        borderRadius: '8px',
+      }}
+    >
       <h2>Counter: {count}</h2>
-      
+
       <div style={{ marginBottom: '1rem' }}>
         <label>
           Step:

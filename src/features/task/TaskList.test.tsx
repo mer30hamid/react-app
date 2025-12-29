@@ -91,7 +91,9 @@ describe('TaskList', () => {
       render(<TaskList tasks={[]} setTasks={mockSetTasks} />);
 
       await waitFor(() => {
-        expect(screen.getByText('Error: Failed to load tasks')).toBeInTheDocument();
+        expect(
+          screen.getByText('Error: Failed to load tasks')
+        ).toBeInTheDocument();
       });
     });
   });
@@ -135,7 +137,9 @@ describe('TaskList', () => {
         expect(screen.queryByText('Loading tasks...')).not.toBeInTheDocument();
       });
 
-      const inProgressButton = screen.getByRole('button', { name: /In Progress/i });
+      const inProgressButton = screen.getByRole('button', {
+        name: /In Progress/i,
+      });
       fireEvent.click(inProgressButton);
 
       expect(screen.queryByText('Task 1')).not.toBeInTheDocument();
@@ -233,7 +237,9 @@ describe('TaskList', () => {
       });
 
       expect(screen.getByText('No tasks found')).toBeInTheDocument();
-      expect(screen.getByText('Create your first task to get started!')).toBeInTheDocument();
+      expect(
+        screen.getByText('Create your first task to get started!')
+      ).toBeInTheDocument();
     });
 
     it('displays empty state when filter returns no results', async () => {
@@ -303,7 +309,9 @@ describe('TaskList', () => {
       fireEvent.click(deleteButtons[0]);
 
       await waitFor(() => {
-        expect(window.alert).toHaveBeenCalledWith(expect.stringContaining('Failed to delete task'));
+        expect(window.alert).toHaveBeenCalledWith(
+          expect.stringContaining('Failed to delete task')
+        );
       });
     });
   });
@@ -325,7 +333,9 @@ describe('TaskList', () => {
       fireEvent.change(statusSelects[0], { target: { value: 'done' } });
 
       await waitFor(() => {
-        expect(tasksApi.updateTask).toHaveBeenCalledWith('1', { status: 'done' });
+        expect(tasksApi.updateTask).toHaveBeenCalledWith('1', {
+          status: 'done',
+        });
         expect(mockSetTasks).toHaveBeenCalledWith(expect.any(Function));
       });
 
@@ -350,7 +360,9 @@ describe('TaskList', () => {
       fireEvent.change(statusSelects[0], { target: { value: 'done' } });
 
       await waitFor(() => {
-        expect(window.alert).toHaveBeenCalledWith(expect.stringContaining('Failed to update task'));
+        expect(window.alert).toHaveBeenCalledWith(
+          expect.stringContaining('Failed to update task')
+        );
       });
     });
   });

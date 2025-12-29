@@ -95,7 +95,6 @@ function TaskList({ tasks, setTasks }: TaskListProps) {
           </div>
         </div>
       </div>
-
       <div className={styles.filters}>
         <button
           className={`${styles.filterButton} ${filter === 'all' ? styles.active : ''}`}
@@ -121,11 +120,13 @@ function TaskList({ tasks, setTasks }: TaskListProps) {
         >
           Done ({tasks.filter((t) => t.status === 'done').length})
         </button>
-      </div>      {filteredTasks.length === 0 ? (
+      </div>{' '}
+      {filteredTasks.length === 0 ? (
         <div className={styles.emptyState}>
           <h3>No tasks found</h3>
           <p>Create your first task to get started!</p>
-        </div>      ) : viewMode === 'card' ? (
+        </div>
+      ) : viewMode === 'card' ? (
         <div className={styles.taskGrid}>
           {filteredTasks.map((task) => (
             <TaskCard

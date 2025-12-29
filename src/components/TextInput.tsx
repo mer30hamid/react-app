@@ -7,7 +7,12 @@ type TextInputProps = {
   initialValue?: string;
 };
 
-function TextInput({ label = 'Text Input', maxLength = 100, placeholder = 'Type something...', initialValue = '' }: TextInputProps) {
+function TextInput({
+  label = 'Text Input',
+  maxLength = 100,
+  placeholder = 'Type something...',
+  initialValue = '',
+}: TextInputProps) {
   const [text, setText] = useState(initialValue);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -22,11 +27,19 @@ function TextInput({ label = 'Text Input', maxLength = 100, placeholder = 'Type 
   const isAtLimit = charCount >= maxLength;
 
   return (
-    <div style={{ padding: '1.5rem', border: '1px solid #ddd', borderRadius: '8px' }}>
-      <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>
+    <div
+      style={{
+        padding: '1.5rem',
+        border: '1px solid #ddd',
+        borderRadius: '8px',
+      }}
+    >
+      <label
+        style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}
+      >
         {label}
       </label>
-      
+
       <textarea
         value={text}
         onChange={handleChange}
@@ -43,13 +56,15 @@ function TextInput({ label = 'Text Input', maxLength = 100, placeholder = 'Type 
           boxSizing: 'border-box',
         }}
       />
-      
-      <div style={{ 
-        marginTop: '0.5rem', 
-        fontSize: '0.875rem',
-        color: isAtLimit ? '#ff6b6b' : isNearLimit ? '#f59e0b' : '#666',
-        fontWeight: isNearLimit ? 'bold' : 'normal'
-      }}>
+
+      <div
+        style={{
+          marginTop: '0.5rem',
+          fontSize: '0.875rem',
+          color: isAtLimit ? '#ff6b6b' : isNearLimit ? '#f59e0b' : '#666',
+          fontWeight: isNearLimit ? 'bold' : 'normal',
+        }}
+      >
         {charCount} / {maxLength} characters
         {isAtLimit && ' (limit reached)'}
       </div>

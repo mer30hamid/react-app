@@ -21,8 +21,12 @@ function TasksFeature() {
 
   return (
     <>
-      <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '1rem' }}>
-        <StyledButton onClick={() => setIsModalOpen(true)}>+ New Task</StyledButton>
+      <div
+        style={{ display: 'flex', justifyContent: 'flex-end', padding: '1rem' }}
+      >
+        <StyledButton onClick={() => setIsModalOpen(true)}>
+          + New Task
+        </StyledButton>
       </div>
 
       <Modal
